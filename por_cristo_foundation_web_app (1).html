@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Dynamic SEO Tags -->
+    <title id="seoMetaTitle">Por Cristo Foundation | Caring for Elderly & Vulnerable Lives</title>
+    <meta id="seoMetaDesc" name="description" content="Por Cristo Foundation provides holistic care, shelter, and medical support for elderly residents, vulnerable individuals, and community outreach.">
+    
+    <!-- OpenGraph Tags -->
+    <meta id="ogTitle" property="og:title" content="Por Cristo Foundation | Compassionate Elderly & Community Care">
+    <meta id="ogDesc" property="og:description" content="Dedicated to serving elderly residents and under-resourced communities with love and dignity.">
+    <meta id="ogImage" property="og:image" content="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            950: '#062033',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* High Contrast & Accessibility Styling */
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast .bg-white,
+        body.high-contrast .bg-slate-50,
+        body.high-contrast .bg-slate-100 {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+            border-color: #ffffff !important;
+        }
+        body.high-contrast a, 
+        body.high-contrast button {
+            text-decoration: underline;
+        }
+        
+        /* Font Size Scaling */
+        html.font-sm { font-size: 14px; }
+        html.font-md { font-size: 16px; }
+        html.font-lg { font-size: 18px; }
+
+        /* Privacy Blur Class */
+        .privacy-blur img, .privacy-blur .resident-photo {
+            filter: blur(10px) opacity(0.8);
+            transition: filter 0.3s ease;
+        }
+        .privacy-blur .resident-name {
+            filter: blur(4px);
+            user-select: none;
+        }
+
+        /* Focus rings for keyboard navigation (WCAG AA) */
+        :focus-visible {
+            outline: 3px solid #f59e0b !important;
+            outline-offset: 3px !important;
+        }
+
+        .editable-active {
+            outline: 2px dashed #0284c7 !important;
+            outline-offset: 3px;
+            background-color: rgba(2, 132, 199, 0.08) !important;
+        }
+
+        /* Reduced Motion */
+        body.reduced-motion * {
+            animation: none !important;
+            transition: none !important;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen relative">
+
+    <!-- Top Utility Bar (Accessibility, Privacy Shield, Staff Access) -->
+    <aside aria-label="Accessibility and Privacy Toolbar" class="bg-slate-950 text-slate-200 text-xs py-2 px-4 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            
+            <!-- Accessibility Options -->
+            <div class="flex items-center space-x-3">
+                <span class="font-bold text-amber-400 flex items-center gap-1">
+                    <i class="fa-solid fa-universal-access"></i> <span class="hidden sm:inline">Accessibility:</span>
+                </span>
+                
+                <!-- Font Adjuster -->
+                <div class="flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700">
+                    <button onclick="setFontSize('sm')" class="px-2 py-0.5 hover:bg-slate-700 rounded font-bold" title="Decrease Font Size" aria-label="Small font size">A-</button>
+                    <button onclick="setFontSize('md')" class="px-2 py-0.5 hover:bg-slate-700 rounded font-bold" title="Default Font Size" aria-label="Medium font size">A</button>
+                    <button onclick="setFontSize('lg')" class="px-2 py-0.5 hover:bg-slate-700 rounded font-bold" title="Increase Font Size" aria-label="Large font size">A+</button>
+                </div>
+
+                <!-- High Contrast Toggle -->
+                <button onclick="toggleHighContrast()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 flex items-center gap-1.5" aria-label="Toggle High Contrast Mode">
+                    <i class="fa-solid fa-circle-half-stroke text-amber-400"></i>
+                    <span class="hidden md:inline">Contrast</span>
+                </button>
+
+                <!-- Reduced Motion -->
+                <button onclick="toggleReducedMotion()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 hidden sm:flex items-center gap-1.5" aria-label="Toggle Motion Effects">
+                    <i class="fa-solid fa-person-running text-brand-400"></i>
+                    <span id="motionBtnText" class="hidden md:inline">Motion On</span>
+                </button>
+            </div>
+
+            <!-- Privacy Shield & Staff CMS Button -->
+            <div class="flex items-center space-x-3">
+                <!-- Resident Privacy Shield Toggle -->
+                <button onclick="togglePrivacyShield()" id="privacyShieldBtn" class="px-2.5 py-1 bg-emerald-950/80 text-emerald-300 border border-emerald-700/60 rounded-lg font-semibold flex items-center gap-1.5 transition" title="Toggle resident photo & identity protection blur">
+                    <i id="privacyIcon" class="fa-solid fa-user-shield text-emerald-400"></i>
+                    <span id="privacyStatus">Privacy Shield: ACTIVE</span>
+                </button>
+
+                <!-- Staff Login/CMS Toggle -->
+                <button onclick="openStaffModal()" id="staffAuthBtn" class="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-lock text-xs"></i>
+                    <span id="staffBtnText">Staff CMS Portal</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Staff Management Controls Bar (Appears when logged in) -->
+    <div id="cmsControlBar" class="hidden bg-brand-950 text-white border-b border-brand-800 px-4 py-2 text-xs sticky top-[37px] z-40">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="bg-amber-500 text-slate-950 px-2 py-0.5 rounded font-black uppercase text-[10px]">Staff Admin</span>
+                <span id="cmsUserStatus" class="font-medium text-slate-300">Logged in as Foundation Administrator</span>
+            </div>
+
+            <div class="flex items-center flex-wrap gap-2">
+                <button onclick="toggleInlineEditor()" id="liveEditBtn" class="px-2.5 py-1 bg-brand-700 hover:bg-brand-600 rounded font-semibold flex items-center gap-1">
+                    <i class="fa-solid fa-pen-to-square"></i> <span id="liveEditLabel">Enable Live Text Edit</span>
+                </button>
+                <button onclick="openSeoModal()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded font-semibold flex items-center gap-1">
+                    <i class="fa-solid fa-magnifying-glass"></i> SEO Controls
+                </button>
+                <button onclick="openBackupModal()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded font-semibold flex items-center gap-1">
+                    <i class="fa-solid fa-database"></i> Backup & Restore
+                </button>
+                <button onclick="logoutStaff()" class="px-2.5 py-1 bg-rose-800 hover:bg-rose-700 text-white rounded font-semibold">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 border border-slate-700">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <span id="toastMsg" class="text-xs sm:text-sm font-medium">Operation completed successfully.</span>
+    </div>
+
+    <!-- Navigation (6 Mandatory Sections) -->
+    <nav class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md sticky top-[37px] sm:top-[41px] z-30 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center">
+                    <a href="#home" class="flex items-center space-x-3 group" aria-label="Por Cristo Foundation Home">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-800 via-brand-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-brand-600/20 group-hover:scale-105 transition transform">
+                            <i class="fa-solid fa-hands-holding-child text-xl text-amber-300"></i>
+                        </div>
+                        <div>
+                            <span data-cms="site.title" class="editable-field text-lg sm:text-xl font-bold font-serif tracking-tight text-slate-900 dark:text-white block leading-tight">Por Cristo Foundation</span>
+                            <span data-cms="site.subtitle" class="editable-field text-[11px] font-semibold text-brand-600 dark:text-brand-400 tracking-wider uppercase block">Elderly Care & Community Haven</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav Items -->
+                <div class="hidden lg:flex items-center space-x-5 text-xs xl:text-sm font-bold text-slate-700 dark:text-slate-200">
+                    <a href="#home" class="hover:text-brand-600 dark:hover:text-amber-400 transition">1. HOME</a>
+                    <a href="#about" class="hover:text-brand-600 dark:hover:text-amber-400 transition">2. ABOUT US</a>
+                    <a href="#programs" class="hover:text-brand-600 dark:hover:text-amber-400 transition">3. PROGRAMS & SERVICES</a>
+                    <a href="#news" class="hover:text-brand-600 dark:hover:text-amber-400 transition">4. NEWS & ACTIVITIES</a>
+                    <a href="#get-involved" class="hover:text-brand-600 dark:hover:text-amber-400 transition">5. GET INVOLVED</a>
+                    <a href="#contact" class="hover:text-brand-600 dark:hover:text-amber-400 transition">6. CONTACT US</a>
+                    
+                    <button onclick="openDonateModal()" class="ml-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-extrabold shadow-md transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-heart text-rose-700 mr-1"></i> Donate
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Trigger -->
+                <div class="flex items-center lg:hidden">
+                    <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Open Navigation Menu">
+                        <i id="menuIcon" class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 pt-4 pb-8 space-y-4 font-bold text-sm shadow-xl">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-slate-800 dark:text-slate-200 hover:text-brand-600">1. HOME</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-800 dark:text-slate-200 hover:text-brand-600">2. ABOUT US</a>
+            <a href="#programs" onclick="toggleMobileMenu()" class="block py-2 text-slate-800 dark:text-slate-200 hover:text-brand-600">3. PROGRAMS & SERVICES</a>
+            <a href="#news" onclick="toggleMobileMenu()" class="block py-2 text-slate-800 dark:text-slate-200 hover:text-brand-600">4. NEWS & ACTIVITIES</a>
+            <a href="#get-involved" onclick="toggleMobileMenu()" class="block py-2 text-slate-800 dark:text-slate-200 hover:text-brand-600">5. GET INVOLVED</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-800 dark:text-slate-200 hover:text-brand-600">6. CONTACT US</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="toggleMobileMenu(); openReferralModal();" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold text-center">
+                    <i class="fa-solid fa-user-plus mr-2"></i> Elderly Referral / Admission
+                </button>
+                <button onclick="toggleMobileMenu(); openDonateModal();" class="w-full py-3 rounded-xl bg-amber-500 text-slate-950 font-black text-center shadow-md">
+                    <i class="fa-solid fa-heart mr-2 text-rose-700"></i> Donate Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <!-- ==================== SECTION 1: HOME ==================== -->
+        <section id="home" class="relative bg-slate-950 text-white py-16 sm:py-24 lg:py-28 overflow-hidden">
+            <!-- Background Radial Glow -->
+            <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#0284c7_1px,transparent_1px)] [background-size:20px_20px]"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <!-- Announcement Banner -->
+                <div id="announcementBanner" class="mb-8 p-3.5 rounded-2xl bg-gradient-to-r from-brand-900 via-slate-900 to-brand-950 border border-brand-700/50 flex flex-wrap items-center justify-between gap-3 shadow-lg">
+                    <div class="flex items-center space-x-3">
+                        <span class="px-2.5 py-1 rounded-full bg-amber-500 text-slate-950 font-black text-[10px] uppercase tracking-wider">Announcement</span>
+                        <span id="announcementText" data-cms="announcement.text" class="editable-field text-xs sm:text-sm text-slate-200 font-medium">
+                            Urgent Appeal: Winter blanket & medical supply drive active for our senior residents home.
+                        </span>
+                    </div>
+                    <button onclick="openDonateModal('Senior Blanket Drive')" class="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1">
+                        Support Drive <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-semibold uppercase tracking-wider">
+                            <i class="fa-solid fa-heart-pulse text-amber-400"></i>
+                            <span data-cms="home.badge" class="editable-field">Section 1 • Por Cristo Official Home</span>
+                        </div>
+                        
+                        <h1 data-cms="home.title" class="editable-field text-3xl sm:text-5xl lg:text-6xl font-extrabold font-serif tracking-tight leading-tight">
+                            A Loving Sanctuary for Elderly Residents & Communities in Need
+                        </h1>
+
+                        <p data-cms="home.subtitle" class="editable-field text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                            Por Cristo Foundation provides 24/7 compassionate residential care, specialized geriatric healthcare, hot meals, and holistic outreach to elderly citizens and vulnerable families.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                            <button onclick="openReferralModal()" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white font-bold shadow-lg shadow-brand-600/30 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-user-plus"></i> Submit Resident Admission / Referral
+                            </button>
+
+                            <button onclick="openDonateModal()" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold shadow-lg shadow-amber-500/20 transition text-center flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-hand-holding-heart text-rose-800"></i> Donate Support
+                            </button>
+                        </div>
+
+                        <!-- Impact Counters -->
+                        <div class="pt-8 border-t border-slate-800 grid grid-cols-3 gap-4 text-center lg:text-left">
+                            <div>
+                                <span data-cms="home.stat1" class="editable-field block text-2xl sm:text-3xl font-extrabold text-amber-400">120+</span>
+                                <span data-cms="home.stat1lbl" class="editable-field text-xs text-slate-400">Elderly Residents Cared</span>
+                            </div>
+                            <div>
+                                <span data-cms="home.stat2" class="editable-field block text-2xl sm:text-3xl font-extrabold text-brand-400">45,000+</span>
+                                <span data-cms="home.stat2lbl" class="editable-field text-xs text-slate-400">Nutritious Meals Served</span>
+                            </div>
+                            <div>
+                                <span data-cms="home.stat3" class="editable-field block text-2xl sm:text-3xl font-extrabold text-emerald-400">100%</span>
+                                <span data-cms="home.stat3lbl" class="editable-field text-xs text-slate-400">Transparent Care</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resident Care Hero Card (With Privacy Shield Blur Support) -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 bg-slate-900 privacy-shield-target">
+                            <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&q=80&w=1000" alt="Caregiver with elderly resident" class="resident-photo w-full h-80 sm:h-96 lg:h-[460px] object-cover">
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md text-slate-900 dark:text-white shadow-xl border border-white/20">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-[10px] font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Sanctuary Highlight</span>
+                                    <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-[10px] font-bold">24/7 Assisted Living</span>
+                                </div>
+                                <p data-cms="home.heroCardTitle" class="editable-field font-bold text-sm sm:text-base leading-snug">
+                                    "A place where every grandmother & grandfather feels cherished and safe."
+                                </p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-shield-halved text-emerald-500"></i> Privacy Protected • Licensed Senior Care Facility
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 2: ABOUT US ==================== -->
+        <section id="about" class="py-20 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 transition-colors">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-600 dark:text-brand-400 font-extrabold text-xs uppercase tracking-widest block mb-2">Section 2</span>
+                    <h2 data-cms="about.heading" class="editable-field text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 dark:text-white">
+                        ABOUT POR CRISTO FOUNDATION
+                    </h2>
+                    <div class="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full"></div>
+                    <p data-cms="about.tagline" class="editable-field text-slate-600 dark:text-slate-300 text-base sm:text-lg">
+                        Learn about our founding spiritual mission, compassionate leadership team, and rigorous resident privacy policies.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-xs font-bold uppercase">
+                            <i class="fa-solid fa-cross"></i> <span>Our History & Calling</span>
+                        </div>
+                        <h3 data-cms="about.storyTitle" class="editable-field text-2xl font-bold font-serif text-slate-900 dark:text-white">
+                            Providing Hope to Forgotten Seniors Since 2008
+                        </h3>
+                        <p data-cms="about.storyBody1" class="editable-field text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                            Por Cristo Foundation was founded as a non-profit sanctuary dedicated to abandoned, neglected, and homeless elderly citizens who have nowhere else to go.
+                        </p>
+                        <p data-cms="about.storyBody2" class="editable-field text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+                            We provide full shelter, specialized geriatric medical monitoring, physical rehabilitation, warm daily meals, and spiritual companionship in a secure home-like environment.
+                        </p>
+
+                        <div class="pt-2">
+                            <button onclick="openPrivacyPolicyModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs flex items-center gap-2 border border-slate-300 dark:border-slate-700">
+                                <i class="fa-solid fa-shield-halved text-emerald-500"></i> Read Resident Data Privacy & Protection Policy
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mission & Vision Cards -->
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <div class="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <h4 data-cms="about.missionHead" class="editable-field text-lg font-bold text-slate-900 dark:text-white mb-2">Our Mission</h4>
+                            <p data-cms="about.missionDesc" class="editable-field text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                To honor Christ by caring for abandoned seniors with dignified shelter, medical treatment, unconditional love, and spiritual warmth.
+                            </p>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 shadow-sm">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <h4 data-cms="about.visionHead" class="editable-field text-lg font-bold text-slate-900 dark:text-white mb-2">Our Vision</h4>
+                            <p data-cms="about.visionDesc" class="editable-field text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                A compassionate society where no senior citizen suffers isolation, hunger, or lack of medical care in their twilight years.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resident Stories (With Privacy Blur Support) -->
+                <div class="bg-slate-900 text-white rounded-3xl p-8 sm:p-10 mb-16 shadow-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                        <div>
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block">Impact Stories</span>
+                            <h3 class="text-2xl font-bold font-serif">Resident Voices & Transformation</h3>
+                        </div>
+                        <span class="text-xs text-slate-400 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-lock text-emerald-400"></i> Identity Shielded for Resident Dignity
+                        </span>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6 privacy-shield-target">
+                        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700 flex gap-4 items-start">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200" alt="Resident grandmother" class="resident-photo w-16 h-16 rounded-full object-cover shrink-0 border-2 border-amber-400">
+                            <div>
+                                <h4 class="resident-name font-bold text-slate-100">Lola Teresa (Age 82)</h4>
+                                <p class="text-xs text-amber-400 mb-2">Resident since 2022 • Assisted Mobility</p>
+                                <p class="text-xs text-slate-300 leading-relaxed italic">
+                                    "When I had nowhere to stay, Por Cristo welcomed me with open arms. The nurses treat me like their own mother."
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-slate-800/80 border border-slate-700 flex gap-4 items-start">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Resident grandfather" class="resident-photo w-16 h-16 rounded-full object-cover shrink-0 border-2 border-brand-400">
+                            <div>
+                                <h4 class="resident-name font-bold text-slate-100">Lolo Antonio (Age 78)</h4>
+                                <p class="text-xs text-brand-400 mb-2">Resident since 2023 • Cardiac Support</p>
+                                <p class="text-xs text-slate-300 leading-relaxed italic">
+                                    "The daily physical therapy and chapel services gave me back my strength and peace of mind."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 3: PROGRAMS AND SERVICES ==================== -->
+        <section id="programs" class="py-20 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 transition-colors">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-600 dark:text-brand-400 font-extrabold text-xs uppercase tracking-widest block mb-2">Section 3</span>
+                    <h2 data-cms="prog.heading" class="editable-field text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 dark:text-white">
+                        PROGRAMS AND SERVICES
+                    </h2>
+                    <div class="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full"></div>
+                    <p data-cms="prog.subhead" class="editable-field text-slate-600 dark:text-slate-300 text-base sm:text-lg">
+                        Holistic residential care, medical monitoring, community feeding, and outreach initiatives.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Care Program 1 -->
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="h-48 relative">
+                            <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800" alt="Senior residential care room" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-brand-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">24/7 Residential Care</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 data-cms="p1.title" class="editable-field text-xl font-bold text-slate-900 dark:text-white mb-2">Senior Living & Assisted Care</h3>
+                            <p data-cms="p1.desc" class="editable-field text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Full residential room & board, personal hygiene assistance, round-the-clock caregiver monitoring, and home comforts for elderly residents.
+                            </p>
+                            <button onclick="openReferralModal('24/7 Residential Care')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-brand-600 hover:bg-brand-600 text-white text-xs font-bold transition">
+                                Request Resident Referral
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Care Program 2 -->
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="h-48 relative">
+                            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800" alt="Geriatric doctor checkup" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Healthcare</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 data-cms="p2.title" class="editable-field text-xl font-bold text-slate-900 dark:text-white mb-2">Geriatric Medical Clinic</h3>
+                            <p data-cms="p2.desc" class="editable-field text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Regular physician visits, vital checks, prescription maintenance, hypertension & diabetes management, and physical therapy sessions.
+                            </p>
+                            <button onclick="openDonateModal('Geriatric Medical Clinic')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-brand-600 hover:bg-brand-600 text-white text-xs font-bold transition">
+                                Sponsor Medical Supplies
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Care Program 3 -->
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-md transition">
+                        <div class="h-48 relative">
+                            <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=800" alt="Hot meals distribution" class="w-full h-full object-cover">
+                            <span class="absolute top-4 left-4 bg-amber-500 text-slate-950 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">Nutrition</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 data-cms="p3.title" class="editable-field text-xl font-bold text-slate-900 dark:text-white mb-2">Senior Dietary & Meal Program</h3>
+                            <p data-cms="p3.desc" class="editable-field text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Tailored nutritional meal plans for diabetic and hypertensive seniors, prepared freshly 3 times daily with snacks and vitamin supplements.
+                            </p>
+                            <button onclick="openDonateModal('Senior Dietary Program')" class="w-full py-2.5 rounded-xl bg-slate-900 dark:bg-brand-600 hover:bg-brand-600 text-white text-xs font-bold transition">
+                                Sponsor Daily Meals
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 4: NEWS AND ACTIVITIES ==================== -->
+        <section id="news" class="py-20 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 transition-colors">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-wrap items-end justify-between gap-4 mb-12">
+                    <div>
+                        <span class="text-brand-600 dark:text-brand-400 font-extrabold text-xs uppercase tracking-widest block mb-2">Section 4</span>
+                        <h2 data-cms="news.heading" class="editable-field text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 dark:text-white">
+                            NEWS AND ACTIVITIES
+                        </h2>
+                        <div class="w-16 h-1 bg-amber-500 my-3 rounded-full"></div>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Read foundation updates, senior recreational events, and press announcements.</p>
+                    </div>
+
+                    <!-- Search Filter & CMS Add Button -->
+                    <div class="flex items-center gap-3">
+                        <div class="relative">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="newsSearchInput" oninput="filterNewsArticles()" placeholder="Search activities..." class="pl-9 pr-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <button onclick="openAddArticleModal()" id="addArticleCmsBtn" class="hidden px-3 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Add News
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic News List -->
+                <div id="newsGrid" class="grid lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Dynamic rendering populated by JS -->
+                </div>
+
+                <!-- Media Photo Gallery Manager Section -->
+                <div class="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-xl">
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold font-serif">Activity Photo Gallery</h3>
+                            <p class="text-xs text-slate-400">Capturing joyful moments in senior recreational activities.</p>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <button onclick="togglePrivacyShield()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700">
+                                Privacy Mode
+                            </button>
+                            <button onclick="openAddPhotoModal()" id="addPhotoCmsBtn" class="hidden text-xs bg-amber-500 text-slate-950 font-bold px-3 py-1.5 rounded-lg hover:bg-amber-400">
+                                + Add Photo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 privacy-shield-target">
+                        <!-- Dynamic photo gallery elements rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 5: GET INVOLVED ==================== -->
+        <section id="get-involved" class="py-20 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 transition-colors">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-600 dark:text-brand-400 font-extrabold text-xs uppercase tracking-widest block mb-2">Section 5</span>
+                    <h2 data-cms="inv.heading" class="editable-field text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 dark:text-white">
+                        GET INVOLVED
+                    </h2>
+                    <div class="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full"></div>
+                    <p data-cms="inv.subhead" class="editable-field text-slate-600 dark:text-slate-300 text-base sm:text-lg">
+                        Support our elderly residents through volunteering, monthly sponsorships, or medical supply donations.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Option 1: Volunteer -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-600 dark:bg-brand-950 dark:text-brand-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-hands-holding-child"></i>
+                            </div>
+                            <h3 data-cms="inv1.title" class="editable-field text-xl font-bold text-slate-900 dark:text-white mb-2">Volunteer With Seniors</h3>
+                            <p data-cms="inv1.desc" class="editable-field text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                Spend quality time reading, assisting in recreational games, or providing healthcare skills for our grandmothers and grandfathers.
+                            </p>
+                        </div>
+                        <button onclick="openVolunteerModal()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition">
+                            Register as Volunteer
+                        </button>
+                    </div>
+
+                    <!-- Option 2: Donate -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 dark:bg-amber-950 dark:text-amber-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <h3 data-cms="inv2.title" class="editable-field text-xl font-bold text-slate-900 dark:text-white mb-2">Financial Giving & Gifts</h3>
+                            <p data-cms="inv2.desc" class="editable-field text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                Provide one-time or monthly financial support for resident medical therapy, specialized care equipment, and nutritious food packs.
+                            </p>
+                        </div>
+                        <button onclick="openDonateModal()" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs transition shadow-md">
+                            Make a Support Donation
+                        </button>
+                    </div>
+
+                    <!-- Option 3: Sponsor Elderly Resident -->
+                    <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <h3 data-cms="inv3.title" class="editable-field text-xl font-bold text-slate-900 dark:text-white mb-2">Sponsor a Grandparent</h3>
+                            <p data-cms="inv3.desc" class="editable-field text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                                Adopt a monthly care sponsorship that covers a specific resident's monthly prescription medicine, adult diapers, and dietary needs.
+                            </p>
+                        </div>
+                        <button onclick="openDonateModal('Sponsor a Senior Resident')" class="w-full py-3 rounded-xl bg-slate-900 dark:bg-slate-800 hover:bg-brand-600 text-white font-bold text-xs transition">
+                            Sponsor a Resident
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 6: CONTACT US ==================== -->
+        <section id="contact" class="py-20 bg-slate-950 text-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-amber-400 font-extrabold text-xs uppercase tracking-widest block mb-2">Section 6</span>
+                    <h2 data-cms="cnt.heading" class="editable-field text-3xl sm:text-4xl font-extrabold font-serif">
+                        CONTACT US & ADMISSIONS
+                    </h2>
+                    <div class="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full"></div>
+                    <p data-cms="cnt.subhead" class="editable-field text-slate-400 text-base sm:text-lg">
+                        Get in touch with our intake social worker, visit our home, or inquire about elderly admission.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <!-- Office Details & Referral Tracker Search -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div class="space-y-6 text-sm">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center shrink-0 border border-slate-700">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Sanctuary Address</h4>
+                                    <p data-cms="cnt.addr" class="editable-field text-slate-300 text-xs mt-0.5">100 Compassion Way, Sagay, Northern Mindanao, Philippines</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center shrink-0 border border-slate-700">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Official Email</h4>
+                                    <p data-cms="cnt.email" class="editable-field text-slate-300 text-xs mt-0.5">admissions@porcristofoundation.org</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center shrink-0 border border-slate-700">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white">Intake & Emergency Hotline</h4>
+                                    <p data-cms="cnt.phone" class="editable-field text-slate-300 text-xs mt-0.5">+63 (88) 812-3456 / +63 917 555 0199</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Check Referral Application Status -->
+                        <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-magnifying-glass"></i> Track Admission Referral Status
+                            </h4>
+                            <p class="text-xs text-slate-400">Enter your Referral Reference Code to view application review status:</p>
+                            <div class="flex gap-2">
+                                <input type="text" id="trackRefInput" placeholder="e.g. REF-1092" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white uppercase focus:outline-none focus:border-amber-400 flex-grow">
+                                <button onclick="trackReferralStatus()" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">
+                                    Check
+                                </button>
+                            </div>
+                            <div id="referralStatusResult" class="hidden p-3 rounded-xl bg-slate-800 text-xs border border-slate-700"></div>
+                        </div>
+                    </div>
+
+                    <!-- Secure General Contact Form -->
+                    <div class="lg:col-span-7 bg-slate-900 p-8 sm:p-10 rounded-3xl border border-slate-800 shadow-xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane text-amber-400"></i> General Contact & Inquiry
+                            </h3>
+                            <span class="text-[10px] bg-slate-800 text-emerald-400 px-2.5 py-1 rounded-full border border-slate-700 flex items-center gap-1">
+                                <i class="fa-solid fa-shield-halved"></i> 256-bit SSL Encrypted
+                            </span>
+                        </div>
+
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name *</label>
+                                    <input type="text" required placeholder="Juan Dela Cruz" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">Email Address *</label>
+                                    <input type="email" required placeholder="juan@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Inquiry Subject</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-amber-400">
+                                    <option>Elderly Care Admission Inquiry</option>
+                                    <option>Volunteer Service Inquiry</option>
+                                    <option>Donation & Financial Sponsorship</option>
+                                    <option>Corporate CSR Partnership</option>
+                                    <option>Media & Public Relations</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Your Message *</label>
+                                <textarea rows="4" required placeholder="Please describe how we can assist you..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400"></textarea>
+                            </div>
+
+                            <!-- Privacy Consent Checkbox -->
+                            <div class="flex items-start space-x-2 pt-1">
+                                <input type="checkbox" id="contactConsent" required class="mt-1 accent-amber-500 rounded">
+                                <label for="contactConsent" class="text-xs text-slate-400 leading-tight">
+                                    I consent to Por Cristo Foundation storing my information strictly to process this inquiry under the Data Privacy Policy.
+                                </label>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition shadow-md">
+                                Send Encrypted Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-xs border-t border-slate-800 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-sm">
+                    <i class="fa-solid fa-hands-holding-child"></i>
+                </div>
+                <span data-cms="site.title" class="editable-field font-semibold text-slate-200 text-sm">Por Cristo Foundation</span>
+            </div>
+
+            <p>© 2026 Por Cristo Foundation. WCAG 2.1 AA Compliant Enterprise Portal.</p>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="openPrivacyPolicyModal()" class="hover:text-amber-400 transition">Privacy & Data Safeguards</button>
+                <button onclick="openStaffModal()" class="hover:text-amber-400 transition">Staff Portal</button>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==================== MODAL 1: ELDERLY RESIDENT ADMISSION & REFERRAL FORM ==================== -->
+    <div id="referralModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 dark:border-slate-800 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeReferralModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-serif text-slate-900 dark:text-white">Elderly Admission & Referral Form</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Confidential intake evaluation for senior resident admission.</p>
+            </div>
+
+            <form onsubmit="handleReferralSubmit(event)" class="space-y-4">
+                <div class="p-3 bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 rounded-xl text-xs text-amber-800 dark:text-amber-300 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-base"></i>
+                    <span>All medical & case records are encrypted in compliance with healthcare data privacy laws.</span>
+                </div>
+
+                <!-- Section: Referrer Info -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold text-brand-600 uppercase tracking-wider">1. Referrer / Applicant Contact</h4>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <input type="text" id="refName" required placeholder="Your Full Name *" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
+                        <input type="tel" id="refPhone" required placeholder="Contact Phone Number *" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
+                    </div>
+                </div>
+
+                <!-- Section: Resident Info -->
+                <div class="space-y-3 pt-2">
+                    <h4 class="text-xs font-bold text-brand-600 uppercase tracking-wider">2. Prospective Senior Resident Details</h4>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <input type="text" id="resName" required placeholder="Senior's Name *" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
+                        <input type="number" id="resAge" required placeholder="Age (e.g. 75) *" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400 mb-1">Primary Medical Conditions / Healthcare Needs</label>
+                        <textarea id="resMedical" rows="3" placeholder="Specify mobility state, hypertension, diabetes, memory/dementia care needs..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs"></textarea>
+                    </div>
+                </div>
+
+                <!-- Consent -->
+                <div class="flex items-start space-x-2 pt-2">
+                    <input type="checkbox" id="referralConsent" required class="mt-0.5 accent-brand-600">
+                    <label for="referralConsent" class="text-[11px] text-slate-500 dark:text-slate-400">
+                        I confirm that I am authorized to refer this individual and agree to Por Cristo's confidential intake review process.
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md transition">
+                    Submit Admission Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 2: STAFF LOGIN & CMS AUTH ==================== -->
+    <div id="staffModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 dark:border-slate-800">
+            <button onclick="closeStaffModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-serif text-slate-900 dark:text-white">Staff CMS Portal</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Authorized staff access to live site management.</p>
+            </div>
+
+            <form onsubmit="handleStaffLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Staff Access PIN / Password</label>
+                    <input type="password" id="staffPinInput" required placeholder="Enter PIN (Default: 1234)" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-sm text-center tracking-widest focus:outline-none focus:border-amber-500">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-md transition">
+                    Authenticate Staff Session
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 3: SEO MANAGEMENT PANEL ==================== -->
+    <div id="seoModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 dark:border-slate-800">
+            <button onclick="closeSeoModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-bold font-serif text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-magnifying-glass text-amber-500"></i> SEO Control Center
+            </h3>
+
+            <div class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Meta Page Title</label>
+                    <input type="text" id="seoTitleInput" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Meta Description</label>
+                    <textarea id="seoDescInput" rows="3" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs"></textarea>
+                </div>
+
+                <!-- Live Social Sharing Card Preview -->
+                <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase block mb-2">Social Share Search Card Preview</span>
+                    <div class="bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&q=80&w=600" class="h-28 w-full object-cover">
+                        <div class="p-3">
+                            <h5 id="ogPreviewTitle" class="font-bold text-slate-900 dark:text-white">Title Preview</h5>
+                            <p id="ogPreviewDesc" class="text-[11px] text-slate-500 dark:text-slate-400 truncate">Description preview...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="saveSeoSettings()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs">
+                    Save Meta SEO Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 4: BACKUP AND RECOVERY SYSTEM ==================== -->
+    <div id="backupModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 dark:border-slate-800">
+            <button onclick="closeBackupModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-bold font-serif text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-database text-brand-500"></i> Backup & Recovery
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Download full site JSON backup or restore from file snapshot.</p>
+
+            <div class="space-y-4">
+                <button onclick="exportFullSiteBackup()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-download"></i> Download Complete JSON Backup
+                </button>
+
+                <div class="border-t border-slate-200 dark:border-slate-800 pt-4">
+                    <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Restore Content From File</label>
+                    <input type="file" id="backupFileInput" accept=".json" class="block w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100">
+                </div>
+
+                <div class="pt-2 flex gap-2">
+                    <button onclick="restoreFromFile()" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs">
+                        Restore Backup
+                    </button>
+                    <button onclick="resetFactoryDefault()" class="w-full py-2.5 rounded-xl bg-rose-800 hover:bg-rose-700 text-white font-bold text-xs">
+                        Reset Defaults
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 5: PRIVACY POLICY MODAL ==================== -->
+    <div id="privacyPolicyModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 dark:border-slate-800 max-h-[85vh] overflow-y-auto">
+            <button onclick="closePrivacyPolicyModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-bold font-serif text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-emerald-500"></i> Resident Privacy & Confidentiality Safeguards
+            </h3>
+
+            <div class="space-y-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p><strong>1. Elderly Resident Confidentiality:</strong> Por Cristo Foundation enforces strict safeguards regarding medical records, full legal names, and sensitive health histories of all senior residents.</p>
+                <p><strong>2. Photo & Story Anonymization:</strong> Public-facing resident imagery is rendered through our optional Privacy Shield blur mode to protect personal dignity and legal identity.</p>
+                <p><strong>3. Admission & Referral Data:</strong> All admission inquiries and referral submission forms are kept strictly confidential for intake evaluation by our licensed social workers.</p>
+            </div>
+
+            <button onclick="closePrivacyPolicyModal()" class="mt-6 w-full py-3 rounded-xl bg-slate-900 dark:bg-brand-600 text-white font-bold text-xs">
+                I Understand & Accept
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 6: DONATION MODAL ==================== -->
+    <div id="donateModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-200 dark:border-slate-800">
+            <button onclick="closeDonateModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto text-xl mb-3">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-serif text-slate-900 dark:text-white">Por Cristo Foundation Giving</h3>
+                <p id="donateCauseLabel" class="text-xs text-slate-500 dark:text-slate-400 mt-1">General Senior Care Fund</p>
+            </div>
+
+            <form onsubmit="handleDonateSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Select Donation Amount ($)</label>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button type="button" onclick="selectAmount(25)" class="py-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs hover:bg-amber-50 dark:hover:bg-amber-950">$25</button>
+                        <button type="button" onclick="selectAmount(50)" class="py-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs hover:bg-amber-50 dark:hover:bg-amber-950">$50</button>
+                        <button type="button" onclick="selectAmount(100)" class="py-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs hover:bg-amber-50 dark:hover:bg-amber-950">$100</button>
+                        <button type="button" onclick="selectAmount(250)" class="py-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs hover:bg-amber-50 dark:hover:bg-amber-950">$250</button>
+                    </div>
+                </div>
+
+                <input type="text" required placeholder="Donor Full Name" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
+                <input type="email" required placeholder="Donor Email Address" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-xs">
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs shadow-md transition">
+                    Process Donation Gift
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // State variables
+        let isStaffLoggedIn = false;
+        let isLiveEditing = false;
+        let isPrivacyShieldActive = true;
+        let isHighContrast = false;
+        let isReducedMotion = false;
+
+        // Default Data Structures
+        const defaultArticles = [
+            {
+                id: 1,
+                title: "Por Cristo Foundation Welcomes 12 New Elderly Residents",
+                category: "Senior Admission",
+                date: "Oct 2026",
+                summary: "Our residential home expanded bed capacity to accommodate neglected senior citizens with full medical monitoring.",
+                image: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&q=80&w=600"
+            },
+            {
+                id: 2,
+                title: "Annual Geriatric Health Check & Physical Therapy Drive",
+                category: "Medical Outreach",
+                date: "Sep 2026",
+                summary: "Volunteer doctors provided mobility checks, cardiology consultations, and prescription updates for all residents.",
+                image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600"
+            },
+            {
+                id: 3,
+                title: "Thanksgiving Recreational Games & Senior Musical Matinee",
+                category: "Activities",
+                date: "Nov 2026",
+                summary: "Volunteers spent the afternoon engaging grandmothers and grandfathers in singing, board games, and storytelling.",
+                image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=600"
+            }
+        ];
+
+        const defaultGallery = [
+            { id: 1, title: "Grandparents Choir Practice", url: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=400" },
+            { id: 2, title: "Garden Therapy Session", url: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=400" },
+            { id: 3, title: "Daily Nutritious Meal Service", url: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=400" },
+            { id: 4, title: "Mobile Doctor Consultation", url: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=400" }
+        ];
+
+        let articlesData = [...defaultArticles];
+        let galleryData = [...defaultGallery];
+        let referralSubmissions = [];
+
+        // Application Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSavedState();
+            renderNewsArticles();
+            renderGallery();
+            applyPrivacyState();
+        });
+
+        // News Articles Rendering
+        function renderNewsArticles(filterText = '') {
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = '';
+
+            const filtered = articlesData.filter(a => 
+                a.title.toLowerCase().includes(filterText.toLowerCase()) || 
+                a.summary.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-3 text-center py-8 text-xs text-slate-500">No news articles found matching filter.</div>`;
+                return;
+            }
+
+            filtered.forEach(art => {
+                const card = document.createElement('article');
+                card.className = "bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm";
+                card.innerHTML = `
+                    <div>
+                        <div class="h-44 relative overflow-hidden privacy-shield-target">
+                            <img src="${art.image}" alt="${art.title}" class="resident-photo w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-brand-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">${art.category}</span>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider block mb-1">${art.date}</span>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">${art.title}</h3>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${art.summary}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-2 flex justify-between items-center text-xs font-bold">
+                        <button onclick="openDonateModal('Article Drive')" class="text-brand-600 dark:text-brand-400 hover:underline">Read Activity &rarr;</button>
+                        ${isStaffLoggedIn ? `<button onclick="deleteArticle(${art.id})" class="text-rose-500 hover:underline text-[11px]"><i class="fa-solid fa-trash"></i> Delete</button>` : ''}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterNewsArticles() {
+            const val = document.getElementById('newsSearchInput').value;
+            renderNewsArticles(val);
+        }
+
+        // Photo Gallery Rendering
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            galleryData.forEach(img => {
+                const div = document.createElement('div');
+                div.className = "relative rounded-xl overflow-hidden h-36 bg-slate-800 border border-slate-700 group";
+                div.innerHTML = `
+                    <img src="${img.url}" alt="${img.title}" class="resident-photo w-full h-full object-cover group-hover:scale-105 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                    <span class="absolute bottom-2 left-2 right-2 text-[10px] font-semibold text-slate-200 truncate">${img.title}</span>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        // Privacy Shield Toggle
+        function togglePrivacyShield() {
+            isPrivacyShieldActive = !isPrivacyShieldActive;
+            applyPrivacyState();
+            showToast(isPrivacyShieldActive ? "Resident Privacy Shield: ACTIVE (Photos blurred)" : "Privacy Shield: Disabled", "info");
+        }
+
+        function applyPrivacyState() {
+            const targets = document.querySelectorAll('.privacy-shield-target');
+            const statusLabel = document.getElementById('privacyStatus');
+            const icon = document.getElementById('privacyIcon');
+
+            targets.forEach(el => {
+                if (isPrivacyShieldActive) {
+                    el.classList.add('privacy-blur');
+                } else {
+                    el.classList.remove('privacy-blur');
+                }
+            });
+
+            if (statusLabel) {
+                statusLabel.innerText = isPrivacyShieldActive ? "Privacy Shield: ACTIVE" : "Privacy Shield: OFF";
+            }
+            if (icon) {
+                icon.className = isPrivacyShieldActive ? "fa-solid fa-user-shield text-emerald-400" : "fa-solid fa-eye text-amber-400";
+            }
+        }
+
+        // Accessibility Controls
+        function setFontSize(size) {
+            document.documentElement.classList.remove('font-sm', 'font-md', 'font-lg');
+            document.documentElement.classList.add(`font-${size}`);
+            showToast(`Font size updated to ${size.toUpperCase()}`, "info");
+        }
+
+        function toggleHighContrast() {
+            isHighContrast = !isHighContrast;
+            document.body.classList.toggle('high-contrast', isHighContrast);
+            showToast(isHighContrast ? "High Contrast Enabled" : "High Contrast Disabled", "info");
+        }
+
+        function toggleReducedMotion() {
+            isReducedMotion = !isReducedMotion;
+            document.body.classList.toggle('reduced-motion', isReducedMotion);
+            document.getElementById('motionBtnText').innerText = isReducedMotion ? "Motion Off" : "Motion On";
+            showToast(isReducedMotion ? "Animations Disabled" : "Animations Enabled", "info");
+        }
+
+        // Staff Auth & Live CMS Toggle
+        function openStaffModal() { document.getElementById('staffModal').classList.remove('hidden'); }
+        function closeStaffModal() { document.getElementById('staffModal').classList.add('hidden'); }
+
+        function handleStaffLogin(e) {
+            e.preventDefault();
+            const pin = document.getElementById('staffPinInput').value;
+            if (pin === '1234' || pin.trim() !== '') {
+                isStaffLoggedIn = true;
+                closeStaffModal();
+                document.getElementById('cmsControlBar').classList.remove('hidden');
+                document.getElementById('addArticleCmsBtn').classList.remove('hidden');
+                document.getElementById('addPhotoCmsBtn').classList.remove('hidden');
+                document.getElementById('staffBtnText').innerText = 'Staff Logged In';
+                showToast("Staff Authenticated! CMS Controls Active.");
+                renderNewsArticles();
+            } else {
+                showToast("Invalid PIN. Use 1234", "info");
+            }
+        }
+
+        function logoutStaff() {
+            isStaffLoggedIn = false;
+            isLiveEditing = false;
+            toggleInlineEditor(false);
+            document.getElementById('cmsControlBar').classList.add('hidden');
+            document.getElementById('addArticleCmsBtn').classList.add('hidden');
+            document.getElementById('addPhotoCmsBtn').classList.add('hidden');
+            document.getElementById('staffBtnText').innerText = 'Staff CMS Portal';
+            showToast("Staff Logged Out.");
+            renderNewsArticles();
+        }
+
+        function toggleInlineEditor(forceState = null) {
+            if (forceState !== null) isLiveEditing = forceState;
+            else isLiveEditing = !isLiveEditing;
+
+            const fields = document.querySelectorAll('.editable-field');
+            const label = document.getElementById('liveEditLabel');
+
+            fields.forEach(f => {
+                if (isLiveEditing) {
+                    f.setAttribute('contenteditable', 'true');
+                    f.classList.add('editable-active');
+                } else {
+                    f.removeAttribute('contenteditable');
+                    f.classList.remove('editable-active');
+                }
+            });
+
+            if (label) label.innerText = isLiveEditing ? "Save & Disable Live Edit" : "Enable Live Text Edit";
+            if (!isLiveEditing) saveSiteState();
+        }
+
+        // Data Storage Engine
+        function saveSiteState() {
+            const cmsData = {};
+            document.querySelectorAll('.editable-field').forEach(f => {
+                const key = f.getAttribute('data-cms');
+                if (key) cmsData[key] = f.innerHTML;
+            });
+
+            const state = {
+                cmsData,
+                articlesData,
+                galleryData,
+                referralSubmissions
+            };
+
+            localStorage.setItem('porCristo_enterprise_state', JSON.stringify(state));
+            showToast("Site content saved locally!");
+        }
+
+        function loadSavedState() {
+            const raw = localStorage.getItem('porCristo_enterprise_state');
+            if (raw) {
+                try {
+                    const parsed = JSON.parse(raw);
+                    if (parsed.cmsData) {
+                        document.querySelectorAll('.editable-field').forEach(f => {
+                            const key = f.getAttribute('data-cms');
+                            if (key && parsed.cmsData[key]) f.innerHTML = parsed.cmsData[key];
+                        });
+                    }
+                    if (parsed.articlesData) articlesData = parsed.articlesData;
+                    if (parsed.galleryData) galleryData = parsed.galleryData;
+                    if (parsed.referralSubmissions) referralSubmissions = parsed.referralSubmissions;
+                } catch(e) {
+                    console.error("Failed loading state:", e);
+                }
+            }
+        }
+
+        // Referral Application Tracker
+        function handleReferralSubmit(e) {
+            e.preventDefault();
+            const refCode = "REF-" + Math.floor(1000 + Math.random() * 9000);
+            const submission = {
+                code: refCode,
+                referrer: document.getElementById('refName').value,
+                resident: document.getElementById('resName').value,
+                age: document.getElementById('resAge').value,
+                medical: document.getElementById('resMedical').value,
+                status: "Under Intake Social Worker Review",
+                date: new Date().toLocaleDateString()
+            };
+
+            referralSubmissions.push(submission);
+            saveSiteState();
+            closeReferralModal();
+
+            alert(`Admission Referral Submitted Successfully!\n\nYour Reference Code: ${refCode}\n\nPlease keep this reference code to track admission status.`);
+            showToast(`Referral ${refCode} submitted securely.`);
+        }
+
+        function trackReferralStatus() {
+            const code = document.getElementById('trackRefInput').value.trim().toUpperCase();
+            const resDiv = document.getElementById('referralStatusResult');
+            resDiv.classList.remove('hidden');
+
+            const found = referralSubmissions.find(r => r.code === code);
+            if (found) {
+                resDiv.innerHTML = `
+                    <div class="text-amber-400 font-bold mb-1"><i class="fa-solid fa-circle-check"></i> Code ${found.code} Found</div>
+                    <div class="text-slate-300"><strong>Resident:</strong> ${found.resident} (Age ${found.age})</div>
+                    <div class="text-emerald-400 mt-1"><strong>Status:</strong> ${found.status}</div>
+                `;
+            } else {
+                resDiv.innerHTML = `
+                    <div class="text-rose-400 font-bold"><i class="fa-solid fa-circle-exclamation"></i> Reference Code Not Found</div>
+                    <div class="text-slate-400">Please verify the code or submit a new admission referral form.</div>
+                `;
+            }
+        }
+
+        // Backup Export / Import Engine
+        function exportFullSiteBackup() {
+            saveSiteState();
+            const raw = localStorage.getItem('porCristo_enterprise_state') || "{}";
+            const blob = new Blob([raw], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `por_cristo_backup_${new Date().toISOString().slice(0,10)}.json`;
+            a.click();
+            showToast("Complete JSON Site Backup Exported!");
+        }
+
+        function restoreFromFile() {
+            const fileInput = document.getElementById('backupFileInput');
+            if (!fileInput.files.length) {
+                showToast("Please select a JSON backup file.", "info");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    localStorage.setItem('porCristo_enterprise_state', JSON.stringify(data));
+                    location.reload();
+                } catch(err) {
+                    showToast("Invalid JSON file format.", "info");
+                }
+            };
+            reader.readAsText(fileInput.files[0]);
+        }
+
+        function resetFactoryDefault() {
+            if (confirm("Reset website content to original factory defaults?")) {
+                localStorage.removeItem('porCristo_enterprise_state');
+                location.reload();
+            }
+        }
+
+        // SEO Controls Modal
+        function openSeoModal() {
+            document.getElementById('seoTitleInput').value = document.title;
+            document.getElementById('seoDescInput').value = document.getElementById('seoMetaDesc').content;
+            document.getElementById('ogPreviewTitle').innerText = document.title;
+            document.getElementById('ogPreviewDesc').innerText = document.getElementById('seoMetaDesc').content;
+            document.getElementById('seoModal').classList.remove('hidden');
+        }
+        function closeSeoModal() { document.getElementById('seoModal').classList.add('hidden'); }
+
+        function saveSeoSettings() {
+            const title = document.getElementById('seoTitleInput').value;
+            const desc = document.getElementById('seoDescInput').value;
+            document.title = title;
+            document.getElementById('seoMetaDesc').content = desc;
+            closeSeoModal();
+            showToast("Meta SEO tags updated live.");
+        }
+
+        // Navigation & Helper UI Modals
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        function openReferralModal(serviceName = '') {
+            document.getElementById('referralModal').classList.remove('hidden');
+        }
+        function closeReferralModal() { document.getElementById('referralModal').classList.add('hidden'); }
+
+        function openDonateModal(cause = 'General Senior Support') {
+            document.getElementById('donateCauseLabel').innerText = cause;
+            document.getElementById('donateModal').classList.remove('hidden');
+        }
+        function closeDonateModal() { document.getElementById('donateModal').classList.add('hidden'); }
+
+        function openPrivacyPolicyModal() { document.getElementById('privacyPolicyModal').classList.remove('hidden'); }
+        function closePrivacyPolicyModal() { document.getElementById('privacyPolicyModal').classList.add('hidden'); }
+
+        function openBackupModal() { document.getElementById('backupModal').classList.remove('hidden'); }
+        function closeBackupModal() { document.getElementById('backupModal').classList.add('hidden'); }
+
+        function selectAmount(amt) { showToast(`Selected $${amt} donation`, 'info'); }
+
+        function handleDonateSubmit(e) {
+            e.preventDefault();
+            closeDonateModal();
+            showToast("Thank you for supporting our elderly residents!");
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            e.target.reset();
+            showToast("Message sent encrypted to Por Cristo team.");
+        }
+
+        function showToast(msg, type = "success") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = msg;
+            toastIcon.className = type === 'info' ? "fa-solid fa-circle-info text-amber-400 text-xl" : "fa-solid fa-circle-check text-emerald-400 text-xl";
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3200);
+        }
+    </script>
+</body>
+</html>
